@@ -14,6 +14,7 @@ export function ToDos() {
   const [toDoText, setToDoText] = useState('')
 
   const completed = useMemo(() => toDos.filter(todo => todo.hasDone).length, [toDos]);
+  const sortedTodos = useMemo(() => [...toDos.filter(todo => !todo.hasDone), ...toDos.filter(todo => todo.hasDone)], [toDos]); 
   
   function handleCreateNewTodo() {
     const newTodo = {
@@ -57,7 +58,7 @@ export function ToDos() {
         <ToDosInfo created={toDos.length} completed={completed} />
         
         <FlatList
-          data={toDos}
+          data={sortedTodos}
           keyExtractor={item => item.id}
           renderItem={({ item }) => (
             <ToDo
