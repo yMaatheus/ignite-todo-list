@@ -21,4 +21,10 @@ export const styles = StyleSheet.create({
     color: '#F2F2F2',
     fontSize: 14,
   },
+  textDone: {
+    flex: 1,
+    color: '#808080',
+    fontSize: 14,
+    textDecorationLine: 'line-through',
+  },
 })
