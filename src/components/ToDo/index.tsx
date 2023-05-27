@@ -8,13 +8,15 @@ import { styles } from './styles';
 
 type Props = {
   todo: Todo;
+  handleDeleteToDo: (id: string) => void;
+  handleDoneToDo: (id: string) => void;
 }
 
-export function ToDo({ todo: { text, hasDone } }: Props) {
+export function ToDo({ todo: { id, text, hasDone }, handleDeleteToDo, handleDoneToDo }: Props) {
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        onPress={() => console.log('oi check')}
+        onPress={() => handleDoneToDo(id)}
       >
         {
           hasDone
@@ -23,12 +25,12 @@ export function ToDo({ todo: { text, hasDone } }: Props) {
         }
       </TouchableOpacity>
 
-      <Text style={styles.text}>
+      <Text style={hasDone ? styles.textDone : styles.text}>
         {text}
       </Text>
-      
+
       <TouchableOpacity
-        onPress={() => console.log('oi')}
+        onPress={() => handleDeleteToDo(id)}
       >
         <IconTrash />
       </TouchableOpacity>
